@@ -1,6 +1,8 @@
 import os
 import time
 
+import getpass
+
 from button import click_button
 
 def resend_code(page):
@@ -36,7 +38,7 @@ def enter_credentials(page, username, password):
 
 def get_credentials():
     username = input("Enter your username (xxxxyyy): ")
-    password = input("Enter your password: ")
+    password = getpass.getpass(prompt = "Enter your password: ")
     save_credentials = input("Would you like to save your credentials for next time? (Y/n): ").lower()
     if save_credentials == "n":
         return username, password
