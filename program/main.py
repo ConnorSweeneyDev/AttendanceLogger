@@ -20,7 +20,7 @@ def microsoft_login(page):
     wait_for_verification(page)
 
 def initialize_browser(playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     return context
 
