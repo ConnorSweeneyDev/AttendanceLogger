@@ -28,7 +28,7 @@ def main():
     os.system("cls")
     with sync_playwright() as playwright:
         context = initialize_browser(playwright)
-        context.set_default_timeout(3000)
+        context.set_default_timeout(5000)
         page = context.new_page()
 
         try:
