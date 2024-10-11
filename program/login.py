@@ -6,13 +6,13 @@ import getpass
 from button import click_button
 
 def resend_code(page):
+    os.system("cls")
+    print("You took too long! Sending another code in 10 seconds...")
     time.sleep(10)
     page.click("xpath=//*[@id=\"idA_SAASTO_Resend\"]")
     page.wait_for_load_state()
-    os.system("cls")
     print("Please verify your login with the following code: " + page.locator("xpath=//*[@id=\"idRichContext_DisplaySign\"]").inner_text())
 
-# Wait for verification, resend code if necessary, say no to staying signed in if successful
 def wait_for_verification(page):
     print("Please verify your login with the following code: " + page.locator("xpath=//*[@id=\"idRichContext_DisplaySign\"]").inner_text())
     while True:
@@ -24,10 +24,12 @@ def wait_for_verification(page):
     page.wait_for_load_state()
     os.system("cls")
 
-def enter_credentials(page, username, password):
-    print("Logging in...")
+def goto_login_page(page):
     page.goto("https://generalssb-prod.ec.royalholloway.ac.uk/BannerExtensibility/customPage/page/RHUL_Attendance_Student")
     page.wait_for_load_state()
+
+def enter_credentials(page, username, password):
+    print("Logging in...")
     page.fill("xpath=//*[@id=\"i0116\"]", username + "@live.rhul.ac.uk")
     page.click("xpath=//*[@id=\"idSIButton9\"]")
     page.wait_for_load_state()
@@ -35,6 +37,13 @@ def enter_credentials(page, username, password):
     page.click("xpath=//*[@id=\"idSIButton9\"]")
     page.wait_for_load_state()
     os.system("cls")
+
+    try:
+        page.locator("xpath=//*[@id=\"idRichContext_DisplaySign\"]").inner_text() 
+        return True
+    except:
+        print("Login failed! Please check your credentials and try again.")
+        return False
 
 def get_credentials():
     username = input("Enter your username (xxxxyyy): ")
@@ -63,5 +72,4 @@ def retrieve_credentials():
     username, password = check_existing_credentials()
     if username is not None and password is not None:
         return username, password
-    
     return get_credentials()
