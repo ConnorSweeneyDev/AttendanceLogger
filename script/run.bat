@@ -1,9 +1,5 @@
 @ECHO OFF
 
-IF "%1" == "-wezterm" (
-  SET TERM=wezterm cli spawn --cwd %CD% pwsh -Command
-) ELSE (
-  SET TERM=pwsh -Command
-)
-
-%TERM% "python program/main.py"
+SET COMMAND=pwsh -Command "python program/main.py"
+IF "%1" == "-wezterm" (wezterm cli spawn --cwd %CD% %COMMAND%)
+IF "%1" == "" (START %COMMAND%)
