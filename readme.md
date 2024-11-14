@@ -1,5 +1,6 @@
 # Executing
 The following steps are required to run the program:
+- Install pwsh using `winget install --id Microsoft.PowerShell --source winget`.
 - Install python using `winget install --id Python.Python.3.10`.
 - Install playwright using `pip install playwright`.
 - Setup playwright using `playwright install`.
