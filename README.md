@@ -1,4 +1,4 @@
-# Executing
+# Usage
 The following steps are required to run the program:
 - Install pwsh using `winget install --id Microsoft.PowerShell --source winget`.
 - Install python using `winget install --id Python.Python.3.10`.
